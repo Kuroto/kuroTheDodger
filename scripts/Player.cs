@@ -1,8 +1,12 @@
 using Godot;
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 public partial class Player : Area2D
 {
+	[Signal]
+	public delegate void HitEventHandler();
+
 	[Export]
 	public int Speed {get; set;} = 400;  // How fast the player will move (pixels/sec).
 	public Vector2 ScreenSize;  // Size of the game window.
@@ -11,6 +15,7 @@ public partial class Player : Area2D
 	public override void _Ready()
 	{
 		ScreenSize = GetViewportRect().Size;
+		Hide();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,12 +66,45 @@ public partial class Player : Area2D
 		{
 			animatedSprite2D.Animation = "Walk";
 			animatedSprite2D.FlipV = false;
-			animatedSprite2D.FlipH = velocity.X < 0;
+			// Flips the sprite Horizontally
+			//animatedSprite2D.FlipH = velocity.X < 0;  // Flip to left if less than 0. 
+			
+			// Flips the sprite Horizontally, in a different way. More explicit.
+			if (velocity.X < 0)
+			{
+				animatedSprite2D.FlipH = true;
+			}
+			else 
+			{
+				animatedSprite2D.FlipH = false;
+			}
 		}
 		else if (velocity.Y != 0)
 		{
 			animatedSprite2D.Animation = "Up";
 			animatedSprite2D.FlipV = velocity.Y > 0;
 		}
+	}
+
+	// Collision detection
+	private void OnBodyEntered(Node2D body)
+	{
+		Hide();  // Player disappears after being hit.
+		EmitSignal(SignalName.Hit);
+
+		// Must be deferred as we can't change physics properties on a physics callback.
+		// Each time an enemy hits the player, the signal is going to be emitted. We need to disable the player's collision so that
+		// we don't trigger the hit signal more than once.
+
+		// Disabling the area's collision shape can cause an error if it happens in the middle of the engine's collision processing.
+		// Using SetDeferred() tells Godot to wait to disable the shape until it's safe to do so.
+		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+	}
+
+	public void Start(Vector2 position)
+	{
+		Position = position;
+		Show();
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
 	}
 }

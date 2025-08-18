@@ -47,3 +47,5 @@ animation = &"Up"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3.15226, 2.51391)
 shape = SubResource("CapsuleShape2D_bruh7")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
