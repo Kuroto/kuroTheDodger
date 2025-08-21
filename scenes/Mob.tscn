@@ -56,7 +56,7 @@ script = ExtResource("1_e5eql")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_tbe8m")
-animation = &"Fly"
+animation = &"Walk"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

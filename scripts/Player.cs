@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Reflection.Metadata.Ecma335;
 
 public partial class Player : Area2D
 {
@@ -10,6 +9,9 @@ public partial class Player : Area2D
 	[Export]
 	public int Speed {get; set;} = 400;  // How fast the player will move (pixels/sec).
 	public Vector2 ScreenSize;  // Size of the game window.
+	
+	// Track the current flip state
+	private bool isFlippedVertically = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -47,6 +49,7 @@ public partial class Player : Area2D
 
 		if (velocity.Length() > 0)
 		{
+			//GD.Print(velocity);
 			velocity = velocity.Normalized() * Speed;
 			animatedSprite2D.Play();
 		}
@@ -58,32 +61,29 @@ public partial class Player : Area2D
 		Position += velocity * (float)delta;
 		Position = new Vector2
 		(
-			x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
-			y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
+			x: Mathf.Clamp(Position.X, 30, ScreenSize.X - 30),
+			y: Mathf.Clamp(Position.Y, 35, ScreenSize.Y - 35)
 		);
 
-		if (velocity.X != 0)
+		// Determine which animation to play based on dominant movement direction
+		if (velocity.Length() > 0)
 		{
-			animatedSprite2D.Animation = "Walk";
-			animatedSprite2D.FlipV = false;
-			// Flips the sprite Horizontally
-			//animatedSprite2D.FlipH = velocity.X < 0;  // Flip to left if less than 0. 
-			
-			// Flips the sprite Horizontally, in a different way. More explicit.
-			if (velocity.X < 0)
+			// For diagonal movement, determine which direction is more dominant
+			if (Math.Abs(velocity.X) > Math.Abs(velocity.Y))
 			{
-				animatedSprite2D.FlipH = true;
+				// Horizontal movement is dominant
+				animatedSprite2D.Animation = "Walk";
+				animatedSprite2D.FlipH = velocity.X < 0;
 			}
-			else 
+			else
 			{
-				animatedSprite2D.FlipH = false;
+				// Vertical movement is dominant
+				animatedSprite2D.Animation = "Up";
+				isFlippedVertically = velocity.Y > 0;  // Set the flipped state to "true" when moving vertically.
+				animatedSprite2D.FlipH = false; // Reset horizontal flip for vertical movement
 			}
 		}
-		else if (velocity.Y != 0)
-		{
-			animatedSprite2D.Animation = "Up";
-			animatedSprite2D.FlipV = velocity.Y > 0;
-		}
+		animatedSprite2D.FlipV = isFlippedVertically;  // When player not moving, set flipped state to "false".
 	}
 
 	// Collision detection
