@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp016kpmuvfw2"]
+
+[ext_resource type="Script" uid="uid://bx1tqilouwkk1" path="res://scripts/HUD.cs" id="1_fls4u"]
+[ext_resource type="FontFile" uid="uid://dhvafms8w0uj5" path="res://fonts/Xolonium-Regular.ttf" id="1_qpvh6"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_fls4u"]
+action = &"StartGame"
+
+[sub_resource type="Shortcut" id="Shortcut_1etfg"]
+events = [SubResource("InputEventAction_fls4u")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_fls4u")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_top = 8.0
+offset_right = 22.5
+offset_bottom = 86.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_qpvh6")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -164.0
+offset_right = 960.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_qpvh6")
+theme_override_font_sizes/font_size = 64
+text = "Prepare to dogde!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 159.0
+offset_right = 100.0
+offset_bottom = 259.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/icon_disabled_color = Color(0.64645, 0.320273, 0.519796, 1)
+theme_override_colors/icon_pressed_color = Color(0.722, 0.338967, 0.338339, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_qpvh6")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_1etfg")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPress"]
+[connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]

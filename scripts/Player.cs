@@ -10,7 +10,7 @@ public partial class Player : Area2D
 	public int Speed {get; set;} = 400;  // How fast the player will move (pixels/sec).
 	public Vector2 ScreenSize;  // Size of the game window.
 	
-	// Track the current flip state
+	// Track the current flip state (to flip the player character sprite based on movement)
 	private bool isFlippedVertically = false;
 
 	// Called when the node enters the scene tree for the first time.
@@ -52,22 +52,8 @@ public partial class Player : Area2D
 			//GD.Print(velocity);
 			velocity = velocity.Normalized() * Speed;
 			animatedSprite2D.Play();
-		}
-		else
-		{
-			animatedSprite2D.Stop();
-		}
 
-		Position += velocity * (float)delta;
-		Position = new Vector2
-		(
-			x: Mathf.Clamp(Position.X, 30, ScreenSize.X - 30),
-			y: Mathf.Clamp(Position.Y, 35, ScreenSize.Y - 35)
-		);
-
-		// Determine which animation to play based on dominant movement direction
-		if (velocity.Length() > 0)
-		{
+			// Determine which animation to play based on dominant movement direction
 			// For diagonal movement, determine which direction is more dominant
 			if (Math.Abs(velocity.X) > Math.Abs(velocity.Y))
 			{
@@ -83,6 +69,18 @@ public partial class Player : Area2D
 				animatedSprite2D.FlipH = false; // Reset horizontal flip for vertical movement
 			}
 		}
+		else
+		{
+			animatedSprite2D.Stop();
+		}
+
+		Position += velocity * (float)delta;
+		Position = new Vector2
+		(
+			x: Mathf.Clamp(Position.X, 30, ScreenSize.X - 30),
+			y: Mathf.Clamp(Position.Y, 35, ScreenSize.Y - 35)
+		);
+
 		animatedSprite2D.FlipV = isFlippedVertically;  // When player not moving, set flipped state to "false".
 	}
 

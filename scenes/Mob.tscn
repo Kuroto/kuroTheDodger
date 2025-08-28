@@ -48,12 +48,12 @@ animations = [{
 radius = 36.9998
 height = 104.001
 
-[node name="Mob" type="RigidBody2D"]
+[node name="Mob" type="RigidBody2D" groups=["Mobs"]]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_e5eql")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="MobAnimations" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_tbe8m")
 animation = &"Walk"
@@ -68,4 +68,4 @@ metadata/_edit_group_ = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 metadata/_edit_group_ = true
 
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2DScreenExited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="DeleteEnemyOnScreenExited"]

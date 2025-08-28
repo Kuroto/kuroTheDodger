@@ -10,7 +10,7 @@ public partial class Main : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		NewGame();
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,6 +22,9 @@ public partial class Main : Node
 	{
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
+		GetNode<HUD>("HUD").ShowGameOver();
+		GetNode<AudioStreamPlayer>("Music").Stop();
+		GetNode<AudioStreamPlayer>("DeathSound").Play();
 	}
 
 	public void NewGame()
@@ -33,11 +36,19 @@ public partial class Main : Node
 		player.Start(startPosition.Position);
 
 		GetNode<Timer>("StartTimer").Start();
+
+		var hud = GetNode<HUD>("HUD");
+		hud.UpdateScore(_score);
+		hud.ShowMessage("Get Ready!");
+
+		GetTree().CallGroup("Mobs", Node.MethodName.QueueFree);
+		GetNode<AudioStreamPlayer>("Music").Play();
 	}
 
 	private void OnScoreTimerTimeout()
 	{
 		_score++;
+		GetNode<HUD>("HUD").UpdateScore(_score);
 	}
 
 	private void OnStartTimerTimeout()
@@ -69,7 +80,7 @@ public partial class Main : Node
 		var velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
 		mob.LinearVelocity = velocity.Rotated(direction);
 
-		// Spawn the mob by adding it ot the Main scene.
+		// Spawn the mob by adding it to the Main scene.
 		AddChild(mob);
 	}
 }
