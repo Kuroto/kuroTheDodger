@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cnkspxubuqi0g"]
 
-[ext_resource type="Script" uid="uid://dsf64r7ut73s5" path="res://scripts/Player.cs" id="1_qu4a1"]
-[ext_resource type="Texture2D" uid="uid://vd6bqqbyjlwy" path="res://art/Player/PlayerCharacter_idle_up.png" id="2_qu4a1"]
-[ext_resource type="Texture2D" uid="uid://dcmh7o1hxk1cj" path="res://art/Player/PlayerCharacter_moving.png" id="3_3li8b"]
-[ext_resource type="Texture2D" uid="uid://cnd48oikpdimn" path="res://art/Player/PlayerCharacter_moving_up.png" id="3_70d11"]
-[ext_resource type="Texture2D" uid="uid://dodkjv6wx220l" path="res://art/Player/PlayerCharacter_idle.png" id="4_mdl7e"]
+[ext_resource type="Script" uid="uid://dsf64r7ut73s5" path="res://Scripts/Player.cs" id="1_qu4a1"]
+[ext_resource type="Texture2D" uid="uid://vd6bqqbyjlwy" path="res://Assets/Player/PlayerCharacter_idle_up.png" id="2_qu4a1"]
+[ext_resource type="Texture2D" uid="uid://dcmh7o1hxk1cj" path="res://Assets/Player/PlayerCharacter_moving.png" id="3_3li8b"]
+[ext_resource type="Texture2D" uid="uid://cnd48oikpdimn" path="res://Assets/Player/PlayerCharacter_moving_up.png" id="3_70d11"]
+[ext_resource type="Texture2D" uid="uid://dodkjv6wx220l" path="res://Assets/Player/PlayerCharacter_idle.png" id="4_mdl7e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_khinc"]
 animations = [{

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cp016kpmuvfw2"]
 
-[ext_resource type="Script" uid="uid://bx1tqilouwkk1" path="res://scripts/HUD.cs" id="1_fls4u"]
-[ext_resource type="FontFile" uid="uid://dhvafms8w0uj5" path="res://fonts/Xolonium-Regular.ttf" id="1_qpvh6"]
+[ext_resource type="Script" uid="uid://bx1tqilouwkk1" path="res://Scripts/HUD.cs" id="1_fls4u"]
+[ext_resource type="FontFile" uid="uid://dhvafms8w0uj5" path="res://Fonts/Xolonium-Regular.ttf" id="1_qpvh6"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_fls4u"]
 action = &"StartGame"
@@ -70,10 +70,10 @@ offset_right = 100.0
 offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/icon_disabled_color = Color(0.64645, 0.320273, 0.519796, 1)
-theme_override_colors/icon_pressed_color = Color(0.722, 0.338967, 0.338339, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0.722, 0.338967, 0.338339, 1)
+theme_override_colors/icon_disabled_color = Color(0.64645, 0.320273, 0.519796, 1)
 theme_override_fonts/font = ExtResource("1_qpvh6")
 theme_override_font_sizes/font_size = 64
 shortcut = SubResource("Shortcut_1etfg")

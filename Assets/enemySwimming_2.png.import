@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhpr437ve0ccu"
-path="res://.godot/imported/KuroDodger_Background_TEMP.png-c7965b27031dd5d4f44cff55f3982c7f.ctex"
+uid="uid://dg6b2alvdtxq0"
+path="res://.godot/imported/enemySwimming_2.png-14291a11d1f7f6bb2f57af3b98d106dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/KuroDodger_Background_TEMP.png"
-dest_files=["res://.godot/imported/KuroDodger_Background_TEMP.png-c7965b27031dd5d4f44cff55f3982c7f.ctex"]
+source_file="res://Assets/enemySwimming_2.png"
+dest_files=["res://.godot/imported/enemySwimming_2.png-14291a11d1f7f6bb2f57af3b98d106dc.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
