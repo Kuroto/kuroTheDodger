@@ -59,12 +59,14 @@ public partial class Player : Area2D
 			{
 				// Horizontal movement is dominant
 				animatedSprite2D.Animation = "Walk";
+				animatedSprite2D.Frame = 1;
 				animatedSprite2D.FlipH = velocity.X < 0;
 			}
 			else
 			{
 				// Vertical movement is dominant
 				animatedSprite2D.Animation = "Up";
+				animatedSprite2D.Frame = 1;
 				isFlippedVertically = velocity.Y > 0;  // Set the flipped state to "true" when moving vertically.
 				animatedSprite2D.FlipH = false; // Reset horizontal flip for vertical movement
 			}
